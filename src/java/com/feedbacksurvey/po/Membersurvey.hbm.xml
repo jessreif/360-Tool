@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 3, 2013 10:32:45 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.feedbacksurvey.po.Membersurvey" table="membersurvey" catalog="360feedbacksurvey">
+        <id name="membersurveyid" type="java.lang.Integer">
+            <column name="membersurveyid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="memberByMemberMemberid" class="com.feedbacksurvey.po.Member" fetch="select">
+            <column name="member_memberid" not-null="true" />
+        </many-to-one>
+        <many-to-one name="memberByMemberMemberidTarget" class="com.feedbacksurvey.po.Member" fetch="select">
+            <column name="member_memberid_target" not-null="true" />
+        </many-to-one>
+        <many-to-one name="survey" class="com.feedbacksurvey.po.Survey" fetch="select">
+            <column name="survey_surveyid" not-null="true" />
+        </many-to-one>
+        <property name="membersurveystatus" type="java.lang.Integer">
+            <column name="membersurveystatus" />
+        </property>
+        <property name="membersurveyfinishtime" type="timestamp">
+            <column name="membersurveyfinishtime" length="19" />
+        </property>
+        <property name="membersurveycol" type="string">
+            <column name="membersurveycol" length="45" />
+        </property>
+        <set name="answers" table="answer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="membersurvey_membersurveyid" not-null="true" />
+            </key>
+            <one-to-many class="com.feedbacksurvey.po.Answer" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 3, 2013 10:32:45 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.feedbacksurvey.po.Member" table="member" catalog="360feedbacksurvey">
+        <id name="memberid" type="java.lang.Integer">
+            <column name="memberid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="team" class="com.feedbacksurvey.po.Team" fetch="select">
+            <column name="team_teamid" not-null="true" />
+        </many-to-one>
+        <property name="memberntlogin" type="string">
+            <column name="memberntlogin" length="45" />
+        </property>
+        <property name="memberrole" type="java.lang.Integer">
+            <column name="memberrole" />
+        </property>
+        <property name="membername" type="string">
+            <column name="membername" length="45" />
+        </property>
+        <property name="managernt" type="string">
+            <column name="managernt" length="45" />
+        </property>
+        <property name="managername" type="string">
+            <column name="managername" length="45" />
+        </property>
+        <set name="membersurveysForMemberMemberidTarget" table="membersurvey" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="member_memberid_target" not-null="true" />
+            </key>
+            <one-to-many class="com.feedbacksurvey.po.Membersurvey" />
+        </set>
+        <set name="membersurveysForMemberMemberid" table="membersurvey" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="member_memberid" not-null="true" />
+            </key>
+            <one-to-many class="com.feedbacksurvey.po.Membersurvey" />
+        </set>
+    </class>
+</hibernate-mapping>

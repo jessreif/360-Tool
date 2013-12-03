@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 3, 2013 10:32:45 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.feedbacksurvey.po.Team" table="team" catalog="360feedbacksurvey">
+        <id name="teamid" type="java.lang.Integer">
+            <column name="teamid" />
+            <generator class="identity" />
+        </id>
+        <property name="teamname" type="string">
+            <column name="teamname" length="45" />
+        </property>
+        <property name="teamdescription" type="string">
+            <column name="teamdescription" length="100" />
+        </property>
+        <property name="teamcreatetime" type="timestamp">
+            <column name="teamcreatetime" length="19" />
+        </property>
+        <set name="members" table="member" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="team_teamid" not-null="true" />
+            </key>
+            <one-to-many class="com.feedbacksurvey.po.Member" />
+        </set>
+        <set name="surveys" table="survey" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="team_teamid" not-null="true" />
+            </key>
+            <one-to-many class="com.feedbacksurvey.po.Survey" />
+        </set>
+    </class>
+</hibernate-mapping>

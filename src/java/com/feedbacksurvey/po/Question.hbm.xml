@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 3, 2013 10:32:45 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.feedbacksurvey.po.Question" table="question" catalog="360feedbacksurvey">
+        <id name="questionid" type="java.lang.Integer">
+            <column name="questionid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="surveytemplate" class="com.feedbacksurvey.po.Surveytemplate" fetch="select">
+            <column name="surveytemplate_surveytemplateid" not-null="true" />
+        </many-to-one>
+        <property name="questioncontent" type="string">
+            <column name="questioncontent" length="200" />
+        </property>
+        <property name="questioncount" type="java.lang.Integer">
+            <column name="questioncount" />
+        </property>
+        <set name="answers" table="answer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="question_questionid" not-null="true" />
+            </key>
+            <one-to-many class="com.feedbacksurvey.po.Answer" />
+        </set>
+    </class>
+</hibernate-mapping>

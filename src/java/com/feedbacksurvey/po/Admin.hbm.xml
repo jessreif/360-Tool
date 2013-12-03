@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 3, 2013 10:32:45 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.feedbacksurvey.po.Admin" table="admin" catalog="360feedbacksurvey">
+        <id name="adminid" type="java.lang.Integer">
+            <column name="adminid" />
+            <generator class="identity" />
+        </id>
+        <property name="adminntlogin" type="string">
+            <column name="adminntlogin" length="45" />
+        </property>
+        <property name="adminlastlogin" type="timestamp">
+            <column name="adminlastlogin" length="19" />
+        </property>
+        <property name="adminright" type="java.lang.Integer">
+            <column name="adminright" />
+        </property>
+        <property name="adminemail" type="string">
+            <column name="adminemail" length="45" />
+        </property>
+        <property name="adminphone" type="string">
+            <column name="adminphone" length="45" />
+        </property>
+        <property name="admindescription" type="string">
+            <column name="admindescription" length="100" />
+        </property>
+        <set name="surveytemplates" table="surveytemplate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="admin_adminid" not-null="true" />
+            </key>
+            <one-to-many class="com.feedbacksurvey.po.Surveytemplate" />
+        </set>
+    </class>
+</hibernate-mapping>

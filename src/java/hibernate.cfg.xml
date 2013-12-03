@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/360feedbacksurvey?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">root</property>
+    <mapping resource="com/feedbacksurvey/po/Team.hbm.xml"/>
+    <mapping resource="com/feedbacksurvey/po/Member.hbm.xml"/>
+    <mapping resource="com/feedbacksurvey/po/Membersurvey.hbm.xml"/>
+    <mapping resource="com/feedbacksurvey/po/Survey.hbm.xml"/>
+    <mapping resource="com/feedbacksurvey/po/Admin.hbm.xml"/>
+    <mapping resource="com/feedbacksurvey/po/Answer.hbm.xml"/>
+    <mapping resource="com/feedbacksurvey/po/Surveytemplate.hbm.xml"/>
+    <mapping resource="com/feedbacksurvey/po/Question.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>
